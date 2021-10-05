@@ -42,6 +42,16 @@ describe('r-b-h routes', () => {
             });
     });
 
+    //will need to add FILMS later
+    it('should GET a studio by id', async () => {
+        const entry = await Studio.create(studio);
+        return request(app)
+            .get('/api/studios/1')
+            .then((res) => {
+                expect(res.body).toEqual(entry);
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
