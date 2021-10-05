@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Studio = require('../lib/models/Studio.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -28,11 +29,16 @@ describe('r-b-h routes', () => {
     });
 
     it('should get all studios', async () => {
-        const entry = await Studio.create(studio);
+        await Studio.create(studio);
         return request(app)
             .get('/api/studios')
             .then((res) => {
-                expect(res.body).toEqual([entry]);
+                expect(res.body).toEqual([
+                    {
+                        studioId: '1',
+                        studioName: 'Ripe Banana Hell',
+                    },
+                ]);
             });
     });
 
