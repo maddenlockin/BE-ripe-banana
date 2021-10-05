@@ -12,17 +12,27 @@ describe('r-b-h routes', () => {
         studioName: 'Ripe Banana Hell',
         city: 'Portland',
         state: 'OR',
-        country: 'USA'
+        country: 'USA',
     };
 
     it('posts new studio to db', () => {
         return request(app)
             .post('/api/studios')
             .send(studio)
-            .then((res) => { expect(res.body).toEqual({
-                studioId: '1',
-                ...studio,
+            .then((res) => {
+                expect(res.body).toEqual({
+                    studioId: '1',
+                    ...studio,
+                });
             });
+    });
+
+    it('should get all studios', async () => {
+        const entry = await Studio.create(studio);
+        return request(app)
+            .get('/api/studios')
+            .then((res) => {
+                expect(res.body).toEqual([entry]);
             });
     });
 

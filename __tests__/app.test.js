@@ -4,11 +4,29 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 
 describe('r-b-h routes', () => {
-  beforeEach(() => {
-    return setup(pool);
-  });
+    beforeEach(() => {
+        return setup(pool);
+    });
 
-  afterAll(() => {
-    pool.end();
-  });
+    const studio = {
+        studioName: 'Ripe Banana Hell',
+        city: 'Portland',
+        state: 'OR',
+        country: 'USA'
+    };
+
+    xit('posts new studio to db', () => {
+        return request(app)
+            .post('/api/studios')
+            .send(studio)
+            .then((res) => { expect(res.body).toEqual({
+                studioId: '1',
+                ...studio,
+            });
+            });
+    });
+
+    afterAll(() => {
+        pool.end();
+    });
 });
