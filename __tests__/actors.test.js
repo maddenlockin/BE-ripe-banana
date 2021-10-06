@@ -8,21 +8,22 @@ describe('r-b-h routes', () => {
         return setup(pool);
     });
 
-    const studio = {
-        studioName: 'Ripe Banana Hell',
-        city: 'Portland',
-        state: 'OR',
-        country: 'USA'
+    const actor = {
+        actorId: 4,
+        actorName: 'Peter Piper',
+        dob: 19680814,
+        pob: 'Russia, OH',
     };
 
-    it.skip('posts new studio to db', () => {
+    it('posts new actors to db', () => {
         return request(app)
-            .post('/api/studios')
-            .send(studio)
-            .then((res) => { expect(res.body).toEqual({
-                studioId: '1',
-                ...studio,
-            });
+            .post('/api/actors')
+            .send(actor)
+            .then((res) => {
+                expect(res.body).toEqual({
+                    actorId: '4',
+                    ...actor,
+                });
             });
     });
 
