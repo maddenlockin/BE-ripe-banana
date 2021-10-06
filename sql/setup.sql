@@ -13,7 +13,7 @@ CREATE TABLE studios (
 INSERT INTO studios (studio_name, city, state, country)
 VALUES ('Blowfish Allures', 'Naples', 'FL', '10293'),
     ('Piglet Party', 'Comeuppance', 'ND', '84756'),
-    ('Cloudy Iceberg'), 'Wuthering', 'VT', '67584');
+    ('Cloudy Iceberg', 'Wuthering', 'VT', '67584');
 
 CREATE TABLE films (
     film_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
