@@ -3,6 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Studio = require('../lib/models/Studio.js');
+const Film = require('../lib/models/Film.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -16,7 +17,7 @@ describe('r-b-h routes', () => {
         country: 'USA',
     };
 
-    it('posts new studio to db', () => {
+    it('POSTS new studio to db', () => {
         return request(app)
             .post('/api/studios')
             .send(studio)
@@ -28,7 +29,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should get all studios', async () => {
+    it('should GET all studios', async () => {
         await Studio.create(studio);
         return request(app)
             .get('/api/studios')
@@ -42,14 +43,30 @@ describe('r-b-h routes', () => {
             });
     });
 
-    //will need to add FILMS later
     it('should GET a studio by id', async () => {
-        const entry = await Studio.create(studio);
+        await Studio.create(studio);
+        const film = await Film.create({
+            title: 'Something Stupid',
+            studioId: '1',
+            released: '1987',
+        });
         return request(app)
-            .get(`/api/studios/${entry.studioId}`)
+            .get('/api/studios/1')
             .then((res) => {
-                console.log(res.body);
-                expect(res.body).toEqual(entry);
+                // console.log(res.body);
+                expect(res.body).toEqual({
+                    studioId: '1',
+                    studioName: 'Ripe Banana Hell',
+                    city: 'Portland',
+                    state: 'OR',
+                    country: 'USA',
+                    Films: [
+                        {
+                            film_id: '1',
+                            title: 'Something Stupid',
+                        },
+                    ],
+                });
             });
     });
 
