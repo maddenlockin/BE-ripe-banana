@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Actor = require('../lib/models/Actor.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -9,13 +10,13 @@ describe('r-b-h routes', () => {
     });
 
     const actor = {
-        actorId: 4,
+        actorId: '4',
         actorName: 'Peter Piper',
-        dob: 19680814,
+        dob: '19680814',
         pob: 'Russia, OH',
     };
 
-    it('posts new actors to db', () => {
+    it.only('posts new actors to db', () => {
         return request(app)
             .post('/api/actors')
             .send(actor)
