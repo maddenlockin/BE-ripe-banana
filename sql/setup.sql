@@ -53,7 +53,7 @@ VALUES ('Windy Cyan', 'Clickbait Weekly'),
 
 CREATE TABLE reviews (
     review_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    rating NUMBER NOT NULL,
+    rating INT NOT NULL,
     reviewer_id BIGINT NOT NULL,
     review VARCHAR(140) NOT NULL,
     film_id BIGINT NOT NULL
