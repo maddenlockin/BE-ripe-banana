@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const studio = require('../lib/controllers/studio.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -10,8 +11,8 @@ describe('r-b-h routes', () => {
 
     const film = {
         title: 'Appendectomy Unlimited',
-        studioId: 4,
-        released: 1963,
+        studioId: '3',
+        released: '1963',
     };
 
     it('posts new film to db', () => {
