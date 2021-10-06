@@ -3,24 +3,22 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 
-describe('r-b-h routes', () => {
+describe('r-b-h reviewer routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
 
-    const studio = {
-        studioName: 'Ripe Banana Hell',
-        city: 'Portland',
-        state: 'OR',
-        country: 'USA'
+    const newReviewer = {
+        reviewerName: 'Tim Alan',
+        company: 'Greg Norman Connection'
     };
 
-    it.skip('posts new studio to db', () => {
+    it('posts new reviewer to db', () => {
         return request(app)
-            .post('/api/studios')
-            .send(studio)
+            .post('/api/reviewers')
+            .send(newReviewer)
             .then((res) => { expect(res.body).toEqual({
-                studioId: '1',
+                reviewerId: '4',
                 ...studio,
             });
             });
