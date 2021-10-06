@@ -9,7 +9,7 @@ describe('r-b-h routes', () => {
         return setup(pool);
     });
 
-    const actor = {
+    const newActor = {
         actorId: '4',
         actorName: 'Peter Piper',
         dob: '19680814',
@@ -19,17 +19,16 @@ describe('r-b-h routes', () => {
     it('posts new actors to db', () => {
         return request(app)
             .post('/api/actors')
-            .send(actor)
+            .send(newActor)
             .then((res) => {
                 expect(res.body).toEqual({
                     actorId: '4',
-                    ...actor,
+                    ...newActor,
                 });
             });
     });
 
-    it('GET ALL actors from db', async () => {
-        await Actor.create(actor);
+    it('GET ALL actors from db', () => {
         return request(app)
             .get('/api/actors')
             .then((res) => {
@@ -37,20 +36,14 @@ describe('r-b-h routes', () => {
                     {
                         actorId: '1',
                         actorName: 'Buffy Sandpaper',
-                        dob: '19520214',
-                        pob: 'Arid Canal, TX',
                     },
                     {
                         actorId: '2',
                         actorName: 'Rupert Pettygrove',
-                        dob: '19810601',
-                        pob: 'Lost Island, NY',
                     },
                     {
                         actorId: '3',
                         actorName: 'Ice Q',
-                        dob: '20051111',
-                        pob: 'Mossy Gulch, KY',
                     },
                 ]);
             });
