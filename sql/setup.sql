@@ -21,7 +21,7 @@ CREATE TABLE films (
     studio_id BIGINT NOT NULL,
     FOREIGN KEY (studio_id) REFERENCES studios(id),
     released NUMERIC(4) NOT NULL
-)
+);
 
 INSERT INTO films (title, studio_id, released)
 VALUES ('Hardwood Variations', '1', '1971'),
@@ -33,7 +33,7 @@ CREATE TABLE actors (
     actor_name TEXT NOT NULL,
     dob TEXT NOT NULL,
     pob TEXT
-)
+);
 
 INSERT INTO actors (actor_name, dob, pob)
 VALUES ('Buffy Sandpaper', '19520214', 'Arid Canal, TX'),
@@ -44,12 +44,12 @@ CREATE TABLE reviewers (
     reviewer_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     reviewer_name TEXT NOT NULL,
     company TEXT NOT NULL
-)
+);
 
 INSERT INTO reviewers (reviewer_name, company)
 VALUES ('Windy Cyan', 'Clickbait Weekly'),
     ('Billy Fakenflick', 'Diatribe Gazette'),
-    ('Edgar Timpani', 'Olfactory Post')
+    ('Edgar Timpani', 'Olfactory Post');
 
 CREATE TABLE reviews (
     review_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE reviews (
     reviewer_id BIGINT NOT NULL,
     review VARCHAR(140) NOT NULL,
     film_id BIGINT NOT NULL
-)
+);
 
 INSERT INTO reviews (rating, reviewer_id, review, film_id)
 VALUES (4, '1', 'I laughed until I forgot what I was laughing about', '3'),
