@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Reviewer = require('../lib/models/Reviewer.js');
 
 describe('r-b-h reviewer routes', () => {
     beforeEach(() => {
@@ -32,18 +33,22 @@ describe('r-b-h reviewer routes', () => {
             .then((res) => {
                 expect(res.body).toEqual([
                     {
+                        reviewerId: '1',
                         reviewerName: 'Windy Cyan',
                         company: 'Clickbait Weekly',
                     },
                     {
+                        reviewerId: '2',
                         reviewerName: 'Billy Fakenflick',
                         company: 'Diatribe Gazette',
                     },
                     {
+                        reviewerId: '3',
                         reviewerName: 'Edgar Timpani',
                         company: 'Olfactory Post',
                     },
                     {
+                        reviewerId: '4',
                         reviewerName: 'Tim Alan',
                         company: 'Greg Norman Connection',
                     },
