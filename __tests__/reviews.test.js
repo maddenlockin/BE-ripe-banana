@@ -8,20 +8,20 @@ describe('r-b-h routes', () => {
         return setup(pool);
     });
 
-    const studio = {
-        studioName: 'Ripe Banana Hell',
-        city: 'Portland',
-        state: 'OR',
-        country: 'USA'
+    const newReview = {
+        rating: '3',
+        reviewerId: '1',
+        review: 'it was rotten bananas',
+        filmId: '1'
     };
 
-    xit('posts new studio to db', () => {
+    it('posts new review to db', () => {
         return request(app)
-            .post('/api/studios')
-            .send(studio)
+            .post('/api/reviews')
+            .send(newReview)
             .then((res) => { expect(res.body).toEqual({
-                studioId: '1',
-                ...studio,
+                reviewId: '4',
+                ...newReview,
             });
             });
     });
