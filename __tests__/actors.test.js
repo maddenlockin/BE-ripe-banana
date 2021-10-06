@@ -16,7 +16,7 @@ describe('r-b-h routes', () => {
         pob: 'Russia, OH',
     };
 
-    it.only('posts new actors to db', () => {
+    it('posts new actors to db', () => {
         return request(app)
             .post('/api/actors')
             .send(actor)
@@ -25,6 +25,34 @@ describe('r-b-h routes', () => {
                     actorId: '4',
                     ...actor,
                 });
+            });
+    });
+
+    it('GET ALL actors from db', async () => {
+        await Actor.create(actor);
+        return request(app)
+            .get('/api/actors')
+            .then((res) => {
+                expect(res.body).toEqual([
+                    {
+                        actorId: '1',
+                        actorName: 'Buffy Sandpaper',
+                        dob: '19520214',
+                        pob: 'Arid Canal, TX',
+                    },
+                    {
+                        actorId: '2',
+                        actorName: 'Rupert Pettygrove',
+                        dob: '19810601',
+                        pob: 'Lost Island, NY',
+                    },
+                    {
+                        actorId: '3',
+                        actorName: 'Ice Q',
+                        dob: '20051111',
+                        pob: 'Mossy Gulch, KY',
+                    },
+                ]);
             });
     });
 

@@ -2,6 +2,8 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
+const Film = require('../lib/models/Film.js');
+const Studio = require('../lib/models/Studio.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -10,11 +12,11 @@ describe('r-b-h routes', () => {
 
     const film = {
         title: 'Appendectomy Unlimited',
-        studioId: 4,
-        released: 1963,
+        studioId: '3',
+        released: '1963',
     };
 
-    it('posts new film to db', () => {
+    xit('posts new film to db', () => {
         return request(app)
             .post('/api/films')
             .send(film)
@@ -23,6 +25,36 @@ describe('r-b-h routes', () => {
                     filmId: '4',
                     ...film,
                 });
+            });
+    });
+
+    xit('should GET all films', async () => {
+        await Film.create(film);
+        return request(app)
+            .get('/api/films')
+            .then((res) => {
+                expect(res.body).toEqual([
+                    {
+                        filmId: '1',
+                        title: 'Hardwood Variations',
+                        released: '1971',
+                    },
+                    {
+                        filmId: '2',
+                        title: 'Wince-Worthy Whispers',
+                        released: '1971',
+                    },
+                    {
+                        filmId: '3',
+                        title: 'Blatherings of Banality',
+                        released: '1971',
+                    },
+                    {
+                        filmId: '4',
+                        title: 'Appendectomy Unlimited',
+                        released: '1963',
+                    },
+                ]);
             });
     });
 
