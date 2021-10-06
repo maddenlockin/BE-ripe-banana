@@ -25,6 +25,32 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
+        it('should GET all reviewers', async () => {
+        await Reviewer.create(newReviewer);
+        return request(app)
+            .get('/api/reviewers')
+            .then((res) => {
+                expect(res.body).toEqual([
+                    {
+                        reviewerName: 'Windy Cyan',
+                        company: 'Clickbait Weekly',
+                    },
+                    {
+                        reviewerName: 'Billy Fakenflick',
+                        company: 'Diatribe Gazette',
+                    },
+                    {
+                        reviewerName: 'Edgar Timpani',
+                        company: 'Olfactory Post',
+                    },
+                    {
+                        reviewerName: 'Tim Alan',
+                        company: 'Greg Norman Connection',
+                    },
+                ]);
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
