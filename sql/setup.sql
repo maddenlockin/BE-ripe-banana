@@ -25,8 +25,8 @@ CREATE TABLE films (
 
 INSERT INTO films (title, studio_id, released)
 VALUES ('Hardwood Variations', '1', '1971'),
-    ('Wince-Worthy Whispers'), '2', '2003'),
-    ('Blatherings of Banality'), '3', '2016');
+    ('Wince-Worthy Whispers', '2', '2003'),
+    ('Blatherings of Banality', '3', '2016');
 
 CREATE TABLE actors (
     actor_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
