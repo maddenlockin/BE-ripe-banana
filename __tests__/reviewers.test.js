@@ -17,10 +17,11 @@ describe('r-b-h reviewer routes', () => {
         return request(app)
             .post('/api/reviewers')
             .send(newReviewer)
-            .then((res) => { expect(res.body).toEqual({
-                reviewerId: '4',
-                ...studio,
-            });
+            .then((res) => {
+                expect(res.body).toEqual({
+                    reviewerId: '4',
+                    ...newReviewer,
+                });
             });
     });
 
