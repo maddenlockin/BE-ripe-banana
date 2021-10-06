@@ -49,6 +49,26 @@ describe('r-b-h routes', () => {
             });
     });
 
+    it('should GET an actor by id', async () => {
+        await Actor.create(actor);
+        return request(app)
+            .get('api/actors/1')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    actorName: 'Buffy Sandpaper',
+                    dob: '19520214',
+                    pob: 'Arid Canal, TX',
+                    Films: [
+                        {
+                            film_id: expect.any(Number),
+                            title: expect.any(String),
+                            released: expect.any(Number),
+                        },
+                    ],
+                });
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
