@@ -23,7 +23,7 @@ describe('r-b-h routes', () => {
             .send(studio)
             .then((res) => {
                 expect(res.body).toEqual({
-                    studioId: '1',
+                    studioId: '4',
                     ...studio,
                 });
             });
@@ -37,6 +37,18 @@ describe('r-b-h routes', () => {
                 expect(res.body).toEqual([
                     {
                         studioId: '1',
+                        studioName: 'Blowfish Allures',
+                    },
+                    {
+                        studioId: '2',
+                        studioName: 'Piglet Party',
+                    },
+                    {
+                        studioId: '3',
+                        studioName: 'Cloudy Iceberg',
+                    },
+                    {
+                        studioId: '4',
                         studioName: 'Ripe Banana Hell',
                     },
                 ]);
@@ -45,25 +57,20 @@ describe('r-b-h routes', () => {
 
     it('should GET a studio by id', async () => {
         await Studio.create(studio);
-        const film = await Film.create({
-            title: 'Something Stupid',
-            studioId: '1',
-            released: '1987',
-        });
         return request(app)
             .get('/api/studios/1')
             .then((res) => {
                 // console.log(res.body);
                 expect(res.body).toEqual({
                     studioId: '1',
-                    studioName: 'Ripe Banana Hell',
-                    city: 'Portland',
-                    state: 'OR',
+                    studioName: 'Blowfish Allures',
+                    city: 'Naples',
+                    state: 'FL',
                     country: 'USA',
                     Films: [
                         {
                             film_id: '1',
-                            title: 'Something Stupid',
+                            title: 'Hardwood Variations',
                         },
                     ],
                 });
