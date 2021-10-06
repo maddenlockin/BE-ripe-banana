@@ -1,6 +1,9 @@
 DROP TABLE IF EXISTS studios CASCADE;
 DROP TABLE IF EXISTS films;
--- actors, reviewers, reviews
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS reviewers CASCADE;
+DROP TABLE IF EXISTS reviews;
+
 
 CREATE TABLE studios (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -11,9 +14,9 @@ CREATE TABLE studios (
 );
 
 INSERT INTO studios (studio_name, city, state, country)
-VALUES ('Blowfish Allures', 'Naples', 'FL', '10293'),
-    ('Piglet Party', 'Comeuppance', 'ND', '84756'),
-    ('Cloudy Iceberg', 'Wuthering', 'VT', '67584');
+VALUES ('Blowfish Allures', 'Naples', 'FL', 'USA'),
+    ('Piglet Party', 'Comeuppance', 'ND', 'USA'),
+    ('Cloudy Iceberg', 'Wuthering', 'VT', 'USA');
 
 CREATE TABLE films (
     film_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -24,9 +27,9 @@ CREATE TABLE films (
 );
 
 INSERT INTO films (title, studio_id, released)
-VALUES ('Hardwood Variations', '1', '1971'),
-    ('Wince-Worthy Whispers', '2', '2003'),
-    ('Blatherings of Banality', '3', '2016');
+VALUES ('Hardwood Variations', 1, 1971),
+    ('Wince-Worthy Whispers', 2, 2003),
+    ('Blatherings of Banality', 3, 2016);
 
 CREATE TABLE actors (
     actor_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -53,14 +56,15 @@ VALUES ('Windy Cyan', 'Clickbait Weekly'),
 
 CREATE TABLE reviews (
     review_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    rating INT NOT NULL,
+    rating BIGINT NOT NULL,
     reviewer_id BIGINT NOT NULL,
+    FOREIGN KEY (reviewer_id) REFERENCES reviewers(reviewer_id),
     review VARCHAR(140) NOT NULL,
     film_id BIGINT NOT NULL
 );
 
 INSERT INTO reviews (rating, reviewer_id, review, film_id)
-VALUES (4, '1', 'I laughed until I forgot what I was laughing about', '3'),
-    (1, '2', 'I have known kettles of fish more interesting that this film', '1'),
-    (2, '3', 'If only this movie had been shown in Smellovision', '2');
+VALUES (4, 1, 'I laughed until I forgot what I was laughing about', 3),
+    (1, 2, 'I have known kettles of fish more interesting that this film', 1),
+    (2, 3, 'If only this movie had been shown in Smellovision', 2);
 
