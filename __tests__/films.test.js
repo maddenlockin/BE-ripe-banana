@@ -8,21 +8,21 @@ describe('r-b-h routes', () => {
         return setup(pool);
     });
 
-    const studio = {
-        studioName: 'Ripe Banana Hell',
-        city: 'Portland',
-        state: 'OR',
-        country: 'USA'
+    const film = {
+        title: 'Appendectomy Unlimited',
+        studioId: 4,
+        released: 1963,
     };
 
-    it.skip('posts new studio to db', () => {
+    xit('posts new film to db', () => {
         return request(app)
-            .post('/api/studios')
-            .send(studio)
-            .then((res) => { expect(res.body).toEqual({
-                studioId: '1',
-                ...studio,
-            });
+            .post('/api/films')
+            .send(film)
+            .then((res) => {
+                expect(res.body).toEqual({
+                    filmId: '4',
+                    ...film,
+                });
             });
     });
 
