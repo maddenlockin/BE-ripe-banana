@@ -16,7 +16,7 @@ describe('r-b-h routes', () => {
         released: '1963',
     };
 
-    it('posts new film to db', () => {
+    xit('posts new film to db', () => {
         return request(app)
             .post('/api/films')
             .send(film)
@@ -29,6 +29,7 @@ describe('r-b-h routes', () => {
     });
 
     it.skip('should GET all films', async () => {
+
         await Film.create(film);
         return request(app)
             .get('/api/films')

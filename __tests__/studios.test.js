@@ -17,7 +17,7 @@ describe('r-b-h routes', () => {
         country: 'USA',
     };
 
-    it('POSTS new studio to db', () => {
+    xit('POSTS new studio to db', () => {
         return request(app)
             .post('/api/studios')
             .send(studio)
@@ -29,7 +29,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET all studios', async () => {
+    xit('should GET all studios', async () => {
         await Studio.create(studio);
         return request(app)
             .get('/api/studios')
@@ -55,7 +55,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET a studio by id', async () => {
+    xit('should GET a studio by id', async () => {
         await Studio.create(studio);
         return request(app)
             .get('/api/studios/1')
