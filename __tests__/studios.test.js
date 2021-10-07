@@ -55,7 +55,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET a studio by id', async () => {
+    xit('should GET a studio by id', async () => {
         await Studio.create(studio);
         return request(app)
             .get('/api/studios/1')
