@@ -28,7 +28,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET all films', async () => {
+    it.skip('should GET all films', async () => {
         await Film.create(film);
         return request(app)
             .get('/api/films')
@@ -38,21 +38,37 @@ describe('r-b-h routes', () => {
                         filmId: '1',
                         title: 'Hardwood Variations',
                         released: '1971',
+                        studio: {
+                            studioId: '1',
+                            name: 'Blowfish Allures',
+                        },
                     },
                     {
                         filmId: '2',
                         title: 'Wince-Worthy Whispers',
-                        released: '1971',
+                        released: '2003',
+                        studio: {
+                            studioId: '2',
+                            name: 'Piglet Party',
+                        },
                     },
                     {
                         filmId: '3',
                         title: 'Blatherings of Banality',
-                        released: '1971',
+                        released: '2016',
+                        studio: {
+                            studioId: '3',
+                            name: 'Cloudy Iceberg',
+                        },
                     },
                     {
                         filmId: '4',
                         title: 'Appendectomy Unlimited',
                         released: '1963',
+                        studio: {
+                            studioId: '3',
+                            name: 'Cloudy Iceberg',
+                        },
                     },
                 ]);
             });
