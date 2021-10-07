@@ -26,7 +26,7 @@ describe('r-b-h routes', () => {
             });
             });
     });
-        it('should GET all reviews', async () => {
+        xit('should GET all reviews', async () => {
         await Review.create(newReview);
         return request(app)
             .get('/api/reviews')
