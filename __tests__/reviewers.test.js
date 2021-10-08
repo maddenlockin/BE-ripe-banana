@@ -69,7 +69,7 @@ describe('r-b-h reviewer routes', () => {
                     company: 'Clickbait Weekly',
                     Reviews: [
                         {
-                            review_id: '1',
+                            reviewId: '1',
                             rating: '4',
                             review: 'I laughed until I forgot what I was laughing about',
                             film: { 
@@ -83,19 +83,22 @@ describe('r-b-h reviewer routes', () => {
     });
 
     it('should update a reviewer by id', async () => {
-         const entry = await Reviewer.create(newReviewer);
-        const updateEntry = {
-            reviewerId: entry.reviewerId,
-            reviewerName: 'ROAR',
-            company: entry.company
-        };
         return request(app)
-            .patch(`/api/reviewers/${entry.id}`)
-            .send(updateEntry)
+            .put('/api/reviewers/3')
+            .send({
+                reviewerId: '3',
+                reviewerName: 'ROAR',
+                company: 'Olfactory Post'
+            })
             .then((res) => {
-                expect(res.body).toEqual(updateEntry);
+                expect(res.body).toEqual({
+                reviewerId: '3',
+                reviewerName: 'ROAR',
+                company: 'Olfactory Post'
             });
-    })
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });
