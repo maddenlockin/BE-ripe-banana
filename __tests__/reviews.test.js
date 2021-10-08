@@ -77,6 +77,14 @@ describe('r-b-h routes', () => {
             });
     });
 
+    it('should delete a review', async () => {
+        return request(app)
+            .delete('/api/reviews/3')
+            .then((res) => {
+                expect(res.body).toEqual({})
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });

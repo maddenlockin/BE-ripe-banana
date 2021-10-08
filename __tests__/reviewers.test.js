@@ -101,7 +101,7 @@ describe('r-b-h reviewer routes', () => {
 
     it('should delete a reviewer if they have no posted reviews', async () => {
         return request(app)
-            .delete('api/reviewers/3')
+            .delete('/api/reviewers/3')
             .then((res) => {
                 expect(res.body).toEqual({})
             });
