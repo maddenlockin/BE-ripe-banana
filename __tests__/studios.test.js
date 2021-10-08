@@ -5,7 +5,7 @@ const app = require('../lib/app.js');
 const Studio = require('../lib/models/Studio.js');
 const Film = require('../lib/models/Film.js');
 
-describe('r-b-h routes', () => {
+xdescribe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -17,7 +17,7 @@ describe('r-b-h routes', () => {
         country: 'USA',
     };
 
-    it('POSTS new studio to db', () => {
+    xit('POSTS new studio to db', () => {
         return request(app)
             .post('/api/studios')
             .send(studio)
@@ -29,7 +29,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET all studios', async () => {
+    xit('should GET all studios', async () => {
         await Studio.create(studio);
         return request(app)
             .get('/api/studios')
@@ -55,7 +55,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET a studio by id', async () => {
+    xit('should GET a studio by id', async () => {
         await Studio.create(studio);
         return request(app)
             .get('/api/studios/1')

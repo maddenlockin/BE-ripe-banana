@@ -24,14 +24,13 @@ describe('r-b-h routes', () => {
                 expect(res.body).toEqual({
                     filmId: '4',
                     title: 'Appendectomy Unlimited',
-                    studio: {studioId: '3'},
-                    released: '1963'
+                    studio: { studioId: '3' },
+                    released: '1963',
                 });
             });
     });
 
     it('should GET all films', async () => {
-
         await Film.create(film);
         return request(app)
             .get('/api/films')
@@ -77,6 +76,17 @@ describe('r-b-h routes', () => {
             });
     });
 
+    it('should get a film by id', () => {
+        return request(app)
+            .get('/api/films/1')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    title: 'Hardwood Variations',
+                    released: '1971',
+                    studio: { name: 'Blowfish Allures', id: '1' },
+                });
+            });
+    });
     afterAll(() => {
         pool.end();
     });

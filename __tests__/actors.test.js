@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 const Actor = require('../lib/models/Actor.js');
 
-describe('r-b-h routes', () => {
+xdescribe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -16,7 +16,7 @@ describe('r-b-h routes', () => {
         pob: 'Russia, OH',
     };
 
-    it('posts new actors to db', () => {
+    xit('posts new actors to db', () => {
         return request(app)
             .post('/api/actors')
             .send(newActor)
@@ -28,7 +28,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('GET ALL actors from db', () => {
+    xit('GET ALL actors from db', () => {
         return request(app)
             .get('/api/actors')
             .then((res) => {
@@ -52,20 +52,22 @@ describe('r-b-h routes', () => {
     xit('should GET an actor by id', async () => {
         await Actor.create(newActor);
         return request(app)
-            .get('api/actors/1')
+            .get('/api/actors/1')
             .then((res) => {
                 expect(res.body).toEqual({
+                    actorId: '1',
                     actorName: 'Buffy Sandpaper',
                     dob: '19520214',
                     pob: 'Arid Canal, TX',
                     Films: [
                         {
-                            film_id: expect.any(Number),
+                            filmId: expect.any(Number),
                             title: expect.any(String),
                             released: expect.any(Number),
                         },
                     ],
                 });
+                console.log('here is my console log', res.body);
             });
     });
 
