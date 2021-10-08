@@ -73,7 +73,7 @@ describe('r-b-h reviewer routes', () => {
                             rating: '4',
                             review: 'I laughed until I forgot what I was laughing about',
                             film: { 
-                                film_id: '3', 
+                                filmId: '3', 
                                 title: 'Blatherings of Banality'
                             }
                         },
@@ -81,6 +81,21 @@ describe('r-b-h reviewer routes', () => {
                 });
             });
     });
+
+    it('should update a reviewer by id', async () => {
+         const entry = await Reviewer.create(newReviewer);
+        const updateEntry = {
+            reviewerId: entry.reviewerId,
+            reviewerName: 'ROAR',
+            company: entry.company
+        };
+        return request(app)
+            .patch(`/api/reviewers/${entry.id}`)
+            .send(updateEntry)
+            .then((res) => {
+                expect(res.body).toEqual(updateEntry);
+            });
+    })
     afterAll(() => {
         pool.end();
     });
