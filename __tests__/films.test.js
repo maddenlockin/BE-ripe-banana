@@ -28,8 +28,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it.skip('should GET all films', async () => {
-
+    xit('should GET all films', async () => {
         await Film.create(film);
         return request(app)
             .get('/api/films')

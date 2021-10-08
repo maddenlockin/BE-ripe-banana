@@ -13,20 +13,21 @@ describe('r-b-h routes', () => {
         rating: '3',
         reviewerId: '1',
         review: 'it was rotten bananas',
-        filmId: '1'
+        filmId: '1',
     };
 
-    it('posts new review to db', () => {
+    xit('posts new review to db', () => {
         return request(app)
             .post('/api/reviews')
             .send(newReview)
-            .then((res) => { expect(res.body).toEqual({
-                reviewId: '4',
-                ...newReview,
-            });
+            .then((res) => {
+                expect(res.body).toEqual({
+                    reviewId: '4',
+                    ...newReview,
+                });
             });
     });
-        xit('should GET all reviews', async () => {
+    xit('should GET all reviews', async () => {
         await Review.create(newReview);
         return request(app)
             .get('/api/reviews')
@@ -38,8 +39,8 @@ describe('r-b-h routes', () => {
                         review: 'I laughed until I forgot what I was laughing about',
                         Film: {
                             filmId: '3',
-                            title: 'Blatherings of Banality'
-                        }
+                            title: 'Blatherings of Banality',
+                        },
                     },
                     {
                         reviewId: '2',
@@ -47,8 +48,8 @@ describe('r-b-h routes', () => {
                         review: 'I have known kettles of fish more interesting that this film',
                         Film: {
                             filmId: '1',
-                            title: 'Hardwood Variations'
-                        }
+                            title: 'Hardwood Variations',
+                        },
                     },
                     {
                         reviewId: '3',
@@ -56,8 +57,8 @@ describe('r-b-h routes', () => {
                         review: 'If only this movie had been shown in Smellovision',
                         Film: {
                             filmId: '2',
-                            title: 'Wince-Worthy Whispers'
-                        }
+                            title: 'Wince-Worthy Whispers',
+                        },
                     },
                     {
                         reviewId: '4',
@@ -65,8 +66,8 @@ describe('r-b-h routes', () => {
                         review: 'it was rotten bananas',
                         Film: {
                             filmId: '3',
-                            title: 'Blatherings of Banality'
-                        }
+                            title: 'Blatherings of Banality',
+                        },
                     },
                 ]);
             });
