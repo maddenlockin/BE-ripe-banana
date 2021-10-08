@@ -69,3 +69,4 @@ VALUES (4, 1, 'I laughed until I forgot what I was laughing about', 3),
     (2, 3, 'If only this movie had been shown in Smellovision', 2);
 
 
+-- junstion table needs a the actor id and film id, when we join into that it will give us access
