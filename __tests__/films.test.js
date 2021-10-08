@@ -23,12 +23,14 @@ describe('r-b-h routes', () => {
             .then((res) => {
                 expect(res.body).toEqual({
                     filmId: '4',
-                    ...film,
+                    title: 'Appendectomy Unlimited',
+                    studio: {studioId: '3'},
+                    released: '1963'
                 });
             });
     });
 
-    it.skip('should GET all films', async () => {
+    it('should GET all films', async () => {
 
         await Film.create(film);
         return request(app)
@@ -41,7 +43,7 @@ describe('r-b-h routes', () => {
                         released: '1971',
                         studio: {
                             studioId: '1',
-                            name: 'Blowfish Allures',
+                            studioName: 'Blowfish Allures',
                         },
                     },
                     {
@@ -50,7 +52,7 @@ describe('r-b-h routes', () => {
                         released: '2003',
                         studio: {
                             studioId: '2',
-                            name: 'Piglet Party',
+                            studioName: 'Piglet Party',
                         },
                     },
                     {
@@ -59,7 +61,7 @@ describe('r-b-h routes', () => {
                         released: '2016',
                         studio: {
                             studioId: '3',
-                            name: 'Cloudy Iceberg',
+                            studioName: 'Cloudy Iceberg',
                         },
                     },
                     {
@@ -68,7 +70,7 @@ describe('r-b-h routes', () => {
                         released: '1963',
                         studio: {
                             studioId: '3',
-                            name: 'Cloudy Iceberg',
+                            studioName: 'Cloudy Iceberg',
                         },
                     },
                 ]);
