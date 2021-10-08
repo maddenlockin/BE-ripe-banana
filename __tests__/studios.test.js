@@ -5,7 +5,7 @@ const app = require('../lib/app.js');
 const Studio = require('../lib/models/Studio.js');
 const Film = require('../lib/models/Film.js');
 
-describe('r-b-h routes', () => {
+xdescribe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });

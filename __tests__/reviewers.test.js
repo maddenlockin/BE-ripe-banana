@@ -5,7 +5,7 @@ const app = require('../lib/app.js');
 const Reviewer = require('../lib/models/Reviewer.js');
 const Film = require('../lib/models/Film.js');
 
-describe('r-b-h reviewer routes', () => {
+xdescribe('r-b-h reviewer routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
