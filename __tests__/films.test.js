@@ -16,7 +16,7 @@ describe('r-b-h routes', () => {
         released: '1963',
     };
 
-    xit('posts new film to db', () => {
+    it('posts new film to db', () => {
         return request(app)
             .post('/api/films')
             .send(film)
