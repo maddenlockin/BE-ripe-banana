@@ -83,6 +83,7 @@ describe('r-b-h routes', () => {
                 expect(res.body).toEqual({
                     title: 'Hardwood Variations',
                     released: '1971',
+                    studio: { name: 'Blowfish Allures', id: '1' },
                 });
             });
     });
