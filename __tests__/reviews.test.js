@@ -20,13 +20,18 @@ describe('r-b-h routes', () => {
         return request(app)
             .post('/api/reviews')
             .send(newReview)
-            .then((res) => { expect(res.body).toEqual({
+            .then((res) => { 
+                //console.log(res.body)
+                expect(res.body).toEqual({
                 reviewId: '4',
-                ...newReview,
+                rating: '3',
+                reviewerId: '1',
+                review: 'it was rotten bananas',
+                film: {filmId: '1'}
             });
             });
     });
-        xit('should GET all reviews', async () => {
+        it('should GET all reviews', async () => {
         await Review.create(newReview);
         return request(app)
             .get('/api/reviews')
@@ -36,7 +41,7 @@ describe('r-b-h routes', () => {
                         reviewId: '1',
                         rating: '4',
                         review: 'I laughed until I forgot what I was laughing about',
-                        Film: {
+                        film: {
                             filmId: '3',
                             title: 'Blatherings of Banality'
                         }
@@ -44,8 +49,8 @@ describe('r-b-h routes', () => {
                     {
                         reviewId: '2',
                         rating: '1',
-                        review: 'I have known kettles of fish more interesting that this film',
-                        Film: {
+                        review: 'I have known kettles of fish more interesting than this film',
+                        film: {
                             filmId: '1',
                             title: 'Hardwood Variations'
                         }
@@ -54,7 +59,7 @@ describe('r-b-h routes', () => {
                         reviewId: '3',
                         rating: '2',
                         review: 'If only this movie had been shown in Smellovision',
-                        Film: {
+                        film: {
                             filmId: '2',
                             title: 'Wince-Worthy Whispers'
                         }
@@ -63,9 +68,9 @@ describe('r-b-h routes', () => {
                         reviewId: '4',
                         rating: '3',
                         review: 'it was rotten bananas',
-                        Film: {
-                            filmId: '3',
-                            title: 'Blatherings of Banality'
+                        film: {
+                            filmId: '1',
+                            title: 'Hardwood Variations'
                         }
                     },
                 ]);
