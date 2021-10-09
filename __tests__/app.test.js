@@ -3,7 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 
-describe('r-b-h routes', () => {
+xdescribe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -12,17 +12,18 @@ describe('r-b-h routes', () => {
         studioName: 'Ripe Banana Hell',
         city: 'Portland',
         state: 'OR',
-        country: 'USA'
+        country: 'USA',
     };
 
     xit('posts new studio to db', () => {
         return request(app)
             .post('/api/studios')
             .send(studio)
-            .then((res) => { expect(res.body).toEqual({
-                studioId: '1',
-                ...studio,
-            });
+            .then((res) => {
+                expect(res.body).toEqual({
+                    studioId: '1',
+                    ...studio,
+                });
             });
     });
 

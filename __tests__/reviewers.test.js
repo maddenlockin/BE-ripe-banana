@@ -12,7 +12,7 @@ describe('r-b-h reviewer routes', () => {
 
     const newReviewer = {
         reviewerName: 'Tim Alan',
-        company: 'Greg Norman Connection'
+        company: 'Greg Norman Connection',
     };
 
     it('posts new reviewer to db', () => {
@@ -27,7 +27,7 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
-        it('should GET all reviewers', async () => {
+    it('should GET all reviewers', async () => {
         await Reviewer.create(newReviewer);
         return request(app)
             .get('/api/reviewers')
@@ -57,30 +57,32 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
-    xit('should GET a reviewer by id', async () => {
-        await Reviewer.create(newReviewer);
+
+    it('should update a reviewer by id', async () => {
         return request(app)
-            .get('/api/reviewers/1')
+            .put('/api/reviewers/3')
+            .send({
+                reviewerId: '3',
+                reviewerName: 'ROAR',
+                company: 'Olfactory Post'
+            })
             .then((res) => {
-                // console.log(res.body);
                 expect(res.body).toEqual({
-                    reviewerId: '1',
-                    reviewerName: 'Windy Cyan',
-                    company: 'Clickbait Weekly',
-                    Reviews: [
-                        {
-                            review_id: '1',
-                            rating: '4',
-                            review: 'I laughed until I forgot what I was laughing about',
-                            film: { 
-                                film_id: '3', 
-                                title: 'Blatherings of Banality'
-                            }
-                        },
-                    ],
-                });
+                reviewerId: '3',
+                reviewerName: 'ROAR',
+                company: 'Olfactory Post'
+            });
             });
     });
+
+    it('should delete a reviewer if they have no posted reviews', async () => {
+        return request(app)
+            .delete('/api/reviewers/3')
+            .then((res) => {
+                expect(res.body).toEqual({})
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });

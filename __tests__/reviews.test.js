@@ -13,20 +13,25 @@ describe('r-b-h routes', () => {
         rating: '3',
         reviewerId: '1',
         review: 'it was rotten bananas',
-        filmId: '1'
+        filmId: '1',
     };
 
     it('posts new review to db', () => {
         return request(app)
             .post('/api/reviews')
             .send(newReview)
-            .then((res) => { expect(res.body).toEqual({
-                reviewId: '4',
-                ...newReview,
-            });
+            .then((res) => {
+                //console.log(res.body)
+                expect(res.body).toEqual({
+                    reviewId: '4',
+                    rating: '3',
+                    reviewerId: '1',
+                    review: 'it was rotten bananas',
+                    film: { filmId: '1' },
+                });
             });
     });
-        xit('should GET all reviews', async () => {
+    it('should GET all reviews', async () => {
         await Review.create(newReview);
         return request(app)
             .get('/api/reviews')
@@ -36,39 +41,48 @@ describe('r-b-h routes', () => {
                         reviewId: '1',
                         rating: '4',
                         review: 'I laughed until I forgot what I was laughing about',
-                        Film: {
+                        film: {
                             filmId: '3',
-                            title: 'Blatherings of Banality'
-                        }
+                            title: 'Blatherings of Banality',
+                        },
                     },
                     {
                         reviewId: '2',
                         rating: '1',
-                        review: 'I have known kettles of fish more interesting that this film',
-                        Film: {
+                        review: 'I have known kettles of fish more interesting than this film',
+                        film: {
                             filmId: '1',
-                            title: 'Hardwood Variations'
-                        }
+                            title: 'Hardwood Variations',
+                        },
                     },
                     {
                         reviewId: '3',
                         rating: '2',
                         review: 'If only this movie had been shown in Smellovision',
-                        Film: {
+                        film: {
                             filmId: '2',
-                            title: 'Wince-Worthy Whispers'
-                        }
+                            title: 'Wince-Worthy Whispers',
+                        },
                     },
                     {
                         reviewId: '4',
                         rating: '3',
                         review: 'it was rotten bananas',
-                        Film: {
-                            filmId: '3',
-                            title: 'Blatherings of Banality'
-                        }
+                        film: {
+                            filmId: '1',
+                            title: 'Hardwood Variations',
+                        },
                     },
                 ]);
+            });
+    });
+
+    it('should delete a review', async () => {
+        return request(app)
+            .delete('/api/reviews/3')
+            .then((res) => {
+                console.log(res.body)
+                expect(res.body).toEqual({});
             });
     });
 

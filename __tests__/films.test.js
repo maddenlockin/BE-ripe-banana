@@ -3,7 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Film = require('../lib/models/Film.js');
-const Studio = require('../lib/models/Studio.js');
+// const Studio = require('../lib/models/Studio.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -16,20 +16,21 @@ describe('r-b-h routes', () => {
         released: '1963',
     };
 
-    xit('posts new film to db', () => {
+    it('posts new film to db', () => {
         return request(app)
             .post('/api/films')
             .send(film)
             .then((res) => {
                 expect(res.body).toEqual({
                     filmId: '4',
-                    ...film,
+                    title: 'Appendectomy Unlimited',
+                    studio: { studioId: '3' },
+                    released: '1963',
                 });
             });
     });
 
-    it.skip('should GET all films', async () => {
-
+    it('should GET all films', async () => {
         await Film.create(film);
         return request(app)
             .get('/api/films')
@@ -41,7 +42,7 @@ describe('r-b-h routes', () => {
                         released: '1971',
                         studio: {
                             studioId: '1',
-                            name: 'Blowfish Allures',
+                            studioName: 'Blowfish Allures',
                         },
                     },
                     {
@@ -50,7 +51,7 @@ describe('r-b-h routes', () => {
                         released: '2003',
                         studio: {
                             studioId: '2',
-                            name: 'Piglet Party',
+                            studioName: 'Piglet Party',
                         },
                     },
                     {
@@ -59,7 +60,7 @@ describe('r-b-h routes', () => {
                         released: '2016',
                         studio: {
                             studioId: '3',
-                            name: 'Cloudy Iceberg',
+                            studioName: 'Cloudy Iceberg',
                         },
                     },
                     {
@@ -68,13 +69,33 @@ describe('r-b-h routes', () => {
                         released: '1963',
                         studio: {
                             studioId: '3',
-                            name: 'Cloudy Iceberg',
+                            studioName: 'Cloudy Iceberg',
                         },
                     },
                 ]);
             });
     });
 
+    it('should get a film by id', () => {
+        return request(app)
+            .get('/api/films/1')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    title: 'Hardwood Variations',
+                    released: '1971',
+                    studio: { name: 'Blowfish Allures', id: '1' },
+                    cast: [{ id: '1', name: 'Buffy Sandpaper' }],
+                    reviews: [
+                        {
+                            id: '2',
+                            rating: '1',
+                            review: 'I have known kettles of fish more interesting than this film',
+                            reviewer: { id: '2', name: 'Billy Fakenflick' },
+                        },
+                    ],
+                });
+            });
+    });
     afterAll(() => {
         pool.end();
     });

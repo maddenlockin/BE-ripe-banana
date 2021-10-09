@@ -52,20 +52,22 @@ describe('r-b-h routes', () => {
     xit('should GET an actor by id', async () => {
         await Actor.create(newActor);
         return request(app)
-            .get('api/actors/1')
+            .get('/api/actors/1')
             .then((res) => {
                 expect(res.body).toEqual({
+                    actorId: '1',
                     actorName: 'Buffy Sandpaper',
                     dob: '19520214',
                     pob: 'Arid Canal, TX',
-                    Films: [
+                    films: [
                         {
-                            film_id: expect.any(Number),
+                            filmId: expect.any(Number),
                             title: expect.any(String),
                             released: expect.any(Number),
                         },
                     ],
                 });
+                console.log('here is my console log', res.body);
             });
     });
 
