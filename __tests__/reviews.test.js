@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 const Review = require('../lib/models/Review.js');
 
-xdescribe('r-b-h routes', () => {
+describe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -16,7 +16,7 @@ xdescribe('r-b-h routes', () => {
         filmId: '1',
     };
 
-    xit('posts new review to db', () => {
+    it('posts new review to db', () => {
         return request(app)
             .post('/api/reviews')
             .send(newReview)
