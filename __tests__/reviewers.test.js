@@ -69,7 +69,7 @@ xdescribe('r-b-h reviewer routes', () => {
                     company: 'Clickbait Weekly',
                     Reviews: [
                         {
-                            review_id: '1',
+                            reviewId: '1',
                             rating: '4',
                             review: 'I laughed until I forgot what I was laughing about',
                             film: {
@@ -81,6 +81,32 @@ xdescribe('r-b-h reviewer routes', () => {
                 });
             });
     });
+
+    it('should update a reviewer by id', async () => {
+        return request(app)
+            .put('/api/reviewers/3')
+            .send({
+                reviewerId: '3',
+                reviewerName: 'ROAR',
+                company: 'Olfactory Post'
+            })
+            .then((res) => {
+                expect(res.body).toEqual({
+                reviewerId: '3',
+                reviewerName: 'ROAR',
+                company: 'Olfactory Post'
+            });
+            });
+    });
+
+    it('should delete a reviewer if they have no posted reviews', async () => {
+        return request(app)
+            .delete('/api/reviewers/3')
+            .then((res) => {
+                expect(res.body).toEqual({})
+            });
+    });
+
     afterAll(() => {
         pool.end();
     });

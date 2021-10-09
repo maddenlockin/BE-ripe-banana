@@ -3,7 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Film = require('../lib/models/Film.js');
-const Studio = require('../lib/models/Studio.js');
+// const Studio = require('../lib/models/Studio.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
