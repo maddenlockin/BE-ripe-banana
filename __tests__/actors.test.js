@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 const Actor = require('../lib/models/Actor.js');
 
-xdescribe('r-b-h routes', () => {
+describe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -16,7 +16,7 @@ xdescribe('r-b-h routes', () => {
         pob: 'Russia, OH',
     };
 
-    xit('posts new actors to db', () => {
+    it('posts new actors to db', () => {
         return request(app)
             .post('/api/actors')
             .send(newActor)
@@ -28,7 +28,7 @@ xdescribe('r-b-h routes', () => {
             });
     });
 
-    xit('GET ALL actors from db', () => {
+    it('GET ALL actors from db', () => {
         return request(app)
             .get('/api/actors')
             .then((res) => {
@@ -49,7 +49,7 @@ xdescribe('r-b-h routes', () => {
             });
     });
 
-    xit('should GET an actor by id', async () => {
+    it('should GET an actor by id', async () => {
         await Actor.create(newActor);
         return request(app)
             .get('/api/actors/1')
