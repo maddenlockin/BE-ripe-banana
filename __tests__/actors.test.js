@@ -59,7 +59,7 @@ describe('r-b-h routes', () => {
                     actorName: 'Buffy Sandpaper',
                     dob: '19520214',
                     pob: 'Arid Canal, TX',
-                    Films: [
+                    films: [
                         {
                             filmId: expect.any(Number),
                             title: expect.any(String),

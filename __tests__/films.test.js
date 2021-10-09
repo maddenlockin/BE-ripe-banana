@@ -3,7 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Film = require('../lib/models/Film.js');
-const Studio = require('../lib/models/Studio.js');
+// const Studio = require('../lib/models/Studio.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -84,6 +84,15 @@ describe('r-b-h routes', () => {
                     title: 'Hardwood Variations',
                     released: '1971',
                     studio: { name: 'Blowfish Allures', id: '1' },
+                    cast: [{ id: '1', name: 'Buffy Sandpaper' }],
+                    reviews: [
+                        {
+                            id: '2',
+                            rating: '1',
+                            review: 'I have known kettles of fish more interesting than this film',
+                            reviewer: { id: '2', name: 'Billy Fakenflick' },
+                        },
+                    ],
                 });
             });
     });
