@@ -5,7 +5,7 @@ const app = require('../lib/app.js');
 const Reviewer = require('../lib/models/Reviewer.js');
 const Film = require('../lib/models/Film.js');
 
-xdescribe('r-b-h reviewer routes', () => {
+describe('r-b-h reviewer routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -15,7 +15,7 @@ xdescribe('r-b-h reviewer routes', () => {
         company: 'Greg Norman Connection',
     };
 
-    xit('posts new reviewer to db', () => {
+    it('posts new reviewer to db', () => {
         return request(app)
             .post('/api/reviewers')
             .send(newReviewer)
@@ -27,7 +27,7 @@ xdescribe('r-b-h reviewer routes', () => {
             });
     });
 
-    xit('should GET all reviewers', async () => {
+    it('should GET all reviewers', async () => {
         await Reviewer.create(newReviewer);
         return request(app)
             .get('/api/reviewers')
@@ -57,30 +57,6 @@ xdescribe('r-b-h reviewer routes', () => {
             });
     });
 
-    xit('should GET a reviewer by id', async () => {
-        await Reviewer.create(newReviewer);
-        return request(app)
-            .get('/api/reviewers/1')
-            .then((res) => {
-                // console.log(res.body);
-                expect(res.body).toEqual({
-                    reviewerId: '1',
-                    reviewerName: 'Windy Cyan',
-                    company: 'Clickbait Weekly',
-                    Reviews: [
-                        {
-                            reviewId: '1',
-                            rating: '4',
-                            review: 'I laughed until I forgot what I was laughing about',
-                            film: {
-                                film_id: '3',
-                                title: 'Blatherings of Banality',
-                            },
-                        },
-                    ],
-                });
-            });
-    });
 
     it('should update a reviewer by id', async () => {
         return request(app)

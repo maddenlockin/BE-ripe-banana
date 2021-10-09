@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 const Review = require('../lib/models/Review.js');
 
-xdescribe('r-b-h routes', () => {
+describe('r-b-h routes', () => {
     beforeEach(() => {
         return setup(pool);
     });
@@ -16,7 +16,7 @@ xdescribe('r-b-h routes', () => {
         filmId: '1',
     };
 
-    xit('posts new review to db', () => {
+    it('posts new review to db', () => {
         return request(app)
             .post('/api/reviews')
             .send(newReview)
@@ -77,12 +77,12 @@ xdescribe('r-b-h routes', () => {
             });
     });
 
-    xit('should delete a review', async () => {
+    it('should delete a review', async () => {
         return request(app)
             .delete('/api/reviews/3')
             .then((res) => {
                 console.log(res.body)
-                expect(res.body).toEqual({})
+                expect(res.body).toEqual({});
             });
     });
 
