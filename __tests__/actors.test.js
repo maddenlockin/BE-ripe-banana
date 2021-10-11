@@ -49,7 +49,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    xit('should GET an actor by id', async () => {
+    it('should GET an actor by id', async () => {
         await Actor.create(newActor);
         return request(app)
             .get('/api/actors/1')
@@ -61,13 +61,12 @@ describe('r-b-h routes', () => {
                     pob: 'Arid Canal, TX',
                     films: [
                         {
-                            filmId: expect.any(Number),
+                            filmId: '1',
                             title: expect.any(String),
-                            released: expect.any(Number),
+                            released: '1971',
                         },
                     ],
                 });
-                console.log('here is my console log', res.body);
             });
     });
 
