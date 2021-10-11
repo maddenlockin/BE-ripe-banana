@@ -67,7 +67,6 @@ describe('r-b-h routes', () => {
                         },
                     ],
                 });
-                console.log('here is my console log', res.body);
             });
     });
 

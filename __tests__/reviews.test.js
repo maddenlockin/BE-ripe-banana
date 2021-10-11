@@ -21,7 +21,6 @@ describe('r-b-h routes', () => {
             .post('/api/reviews')
             .send(newReview)
             .then((res) => {
-                //console.log(res.body)
                 expect(res.body).toEqual({
                     reviewId: '4',
                     rating: '3',
@@ -81,7 +80,6 @@ describe('r-b-h routes', () => {
         return request(app)
             .delete('/api/reviews/3')
             .then((res) => {
-                console.log(res.body)
                 expect(res.body).toEqual({});
             });
     });

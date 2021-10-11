@@ -60,7 +60,6 @@ describe('r-b-h routes', () => {
         return request(app)
             .get('/api/studios/1')
             .then((res) => {
-                // console.log(res.body);
                 expect(res.body).toEqual({
                     studioId: '1',
                     studioName: 'Blowfish Allures',

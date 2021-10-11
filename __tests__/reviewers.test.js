@@ -57,21 +57,44 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
-
     it('should update a reviewer by id', async () => {
         return request(app)
             .put('/api/reviewers/3')
             .send({
                 reviewerId: '3',
                 reviewerName: 'ROAR',
-                company: 'Olfactory Post'
+                company: 'Olfactory Post',
             })
             .then((res) => {
                 expect(res.body).toEqual({
-                reviewerId: '3',
-                reviewerName: 'ROAR',
-                company: 'Olfactory Post'
+                    reviewerId: '3',
+                    reviewerName: 'ROAR',
+                    company: 'Olfactory Post',
+                });
             });
+    });
+
+    it('should GET a reviewer by id', async () => {
+        await Reviewer.create(newReviewer);
+        return request(app)
+            .get('/api/reviewers/1')
+            .then((res) => {
+                expect(res.body).toEqual({
+                    reviewerId: '1',
+                    reviewerName: 'Windy Cyan',
+                    company: 'Clickbait Weekly',
+                    reviews: [
+                        {
+                            reviewId: '1',
+                            rating: '4',
+                            review: 'I laughed until I forgot what I was laughing about',
+                            film: {
+                                filmId: '3',
+                                title: 'Blatherings of Banality',
+                            },
+                        },
+                    ],
+                });
             });
     });
 
@@ -79,7 +102,7 @@ describe('r-b-h reviewer routes', () => {
         return request(app)
             .delete('/api/reviewers/3')
             .then((res) => {
-                expect(res.body).toEqual({})
+                expect(res.body).toEqual({});
             });
     });
 
