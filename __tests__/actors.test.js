@@ -49,7 +49,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    xit('should GET an actor by id', async () => {
+    it('should GET an actor by id', async () => {
         await Actor.create(newActor);
         return request(app)
             .get('/api/actors/1')
