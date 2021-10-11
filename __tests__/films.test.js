@@ -76,7 +76,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it.only('should get a film by id', () => {
+    it('should get a film by id', () => {
         return request(app)
             .get('/api/films/1')
             .then((res) => {

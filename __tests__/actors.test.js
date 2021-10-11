@@ -61,9 +61,9 @@ describe('r-b-h routes', () => {
                     pob: 'Arid Canal, TX',
                     films: [
                         {
-                            filmId: expect.any(Number),
+                            filmId: '1',
                             title: expect.any(String),
-                            released: expect.any(Number),
+                            released: '1971',
                         },
                     ],
                 });
