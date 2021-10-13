@@ -3,7 +3,7 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const Studio = require('../lib/models/Studio.js');
-const Film = require('../lib/models/Film.js');
+//const Film = require('../lib/models/Film.js');
 
 describe('r-b-h routes', () => {
     beforeEach(() => {
@@ -60,7 +60,6 @@ describe('r-b-h routes', () => {
         return request(app)
             .get('/api/studios/1')
             .then((res) => {
-                // console.log(res.body);
                 expect(res.body).toEqual({
                     studioId: '1',
                     studioName: 'Blowfish Allures',
