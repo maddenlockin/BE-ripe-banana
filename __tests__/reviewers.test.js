@@ -27,8 +27,7 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
-    it('should GET all reviewers', async () => {
-        await Reviewer.create(newReviewer);
+    it('should GET all reviewers', () => {
         return request(app)
             .get('/api/reviewers')
             .then((res) => {
@@ -48,16 +47,11 @@ describe('r-b-h reviewer routes', () => {
                         reviewerName: 'Edgar Timpani',
                         company: 'Olfactory Post',
                     },
-                    {
-                        reviewerId: '4',
-                        reviewerName: 'Tim Alan',
-                        company: 'Greg Norman Connection',
-                    },
                 ]);
             });
     });
 
-    it('should update a reviewer by id', async () => {
+    it('should update a reviewer by id', () => {
         return request(app)
             .put('/api/reviewers/3')
             .send({
@@ -74,8 +68,7 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
-    it('should GET a reviewer by id', async () => {
-        await Reviewer.create(newReviewer);
+    it('should GET a reviewer by id', () => {
         return request(app)
             .get('/api/reviewers/1')
             .then((res) => {
@@ -98,7 +91,7 @@ describe('r-b-h reviewer routes', () => {
             });
     });
 
-    it('should delete a reviewer if they have no posted reviews', async () => {
+    it('should delete a reviewer if they have no posted reviews', () => {
         return request(app)
             .delete('/api/reviewers/3')
             .then((res) => {

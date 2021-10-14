@@ -49,8 +49,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET an actor by id', async () => {
-        await Actor.create(newActor);
+    it('should GET an actor by id', () => {
         return request(app)
             .get('/api/actors/1')
             .then((res) => {
@@ -62,7 +61,7 @@ describe('r-b-h routes', () => {
                     films: [
                         {
                             filmId: '1',
-                            title: expect.any(String),
+                            title: 'Hardwood Variations',
                             released: '1971',
                         },
                     ],
