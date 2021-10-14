@@ -30,8 +30,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET all films', async () => {
-        await Film.create(film);
+    it('should GET all films', () => {
         return request(app)
             .get('/api/films')
             .then((res) => {
@@ -58,15 +57,6 @@ describe('r-b-h routes', () => {
                         filmId: '3',
                         title: 'Blatherings of Banality',
                         released: '2016',
-                        studio: {
-                            studioId: '3',
-                            studioName: 'Cloudy Iceberg',
-                        },
-                    },
-                    {
-                        filmId: '4',
-                        title: 'Appendectomy Unlimited',
-                        released: '1963',
                         studio: {
                             studioId: '3',
                             studioName: 'Cloudy Iceberg',

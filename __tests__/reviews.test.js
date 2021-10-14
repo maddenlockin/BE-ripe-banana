@@ -30,8 +30,7 @@ describe('r-b-h routes', () => {
                 });
             });
     });
-    it('should GET all reviews', async () => {
-        await Review.create(newReview);
+    it('should GET all reviews', () => {
         return request(app)
             .get('/api/reviews')
             .then((res) => {
@@ -63,20 +62,11 @@ describe('r-b-h routes', () => {
                             title: 'Wince-Worthy Whispers',
                         },
                     },
-                    {
-                        reviewId: '4',
-                        rating: '3',
-                        review: 'it was rotten bananas',
-                        film: {
-                            filmId: '1',
-                            title: 'Hardwood Variations',
-                        },
-                    },
                 ]);
             });
     });
 
-    it('should delete a review', async () => {
+    it('should delete a review', () => {
         return request(app)
             .delete('/api/reviews/3')
             .then((res) => {

@@ -66,11 +66,6 @@ CREATE TABLE reviews (
 
 INSERT INTO reviews (rating, reviewer_id, review, film_id)
 VALUES (4, 1, 'I laughed until I forgot what I was laughing about', 3),
-<<<<<<< HEAD
-    (1, 2, 'I have known kettles of fish more interesting that this film', 1),
-    (2, 3, 'If only this movie had been shown in Smellovision', 2);
-
-=======
     (1, 2, 'I have known kettles of fish more interesting than this film', 1),
     (2, 3, 'If only this movie had been shown in Smellovision', 2);
 
@@ -81,4 +76,3 @@ CREATE TABLE actors_films (
 
 INSERT INTO actors_films (actor_id, film_id)
 VALUES (1, 1), (2, 3), (3, 2);
->>>>>>> d1bb61ae62fdb9718bebd1bf7359f917fe4a5b1d

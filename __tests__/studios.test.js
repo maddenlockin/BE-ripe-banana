@@ -29,8 +29,7 @@ describe('r-b-h routes', () => {
             });
     });
 
-    it('should GET all studios', async () => {
-        await Studio.create(studio);
+    it('should GET all studios', () => {
         return request(app)
             .get('/api/studios')
             .then((res) => {
@@ -47,16 +46,11 @@ describe('r-b-h routes', () => {
                         studioId: '3',
                         studioName: 'Cloudy Iceberg',
                     },
-                    {
-                        studioId: '4',
-                        studioName: 'Ripe Banana Hell',
-                    },
                 ]);
             });
     });
 
-    it('should GET a studio by id', async () => {
-        await Studio.create(studio);
+    it('should GET a studio by id', () => {
         return request(app)
             .get('/api/studios/1')
             .then((res) => {
